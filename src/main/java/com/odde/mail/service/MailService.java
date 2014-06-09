@@ -1,6 +1,6 @@
 package com.odde.mail.service;
 
-import com.odde.mail.model.MailResult;
+import com.odde.mail.model.Result;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -35,7 +35,7 @@ public class MailService {
     @Value("${smtp_auth}")
     private String smtpAuth;
 
-    public MailResult send(String recipients, String subject, String content) {
+    public Result send(String recipients, String subject, String content) {
         log.debug("mail service send start");
 
         Properties props = new Properties();
@@ -50,7 +50,7 @@ public class MailService {
             }
         });
 
-        MailResult mailResult;
+        Result result;
         try {
             MimeMessage msg = new MimeMessage(session);
             msg.setFrom(new InternetAddress(sendMail));
@@ -58,13 +58,13 @@ public class MailService {
             msg.setSubject(subject);
             msg.setText(content);
             Transport.send(msg);
-            mailResult = new MailResult("成功");
+            result = new Result("成功");
         } catch (MessagingException mex) {
             log.debug(format("error:%s", mex));
-            mailResult = new MailResult("失败");
+            result = new Result("失败");
         }
 
         log.debug("mail service send finish");
-        return mailResult;
+        return result;
     }
 }

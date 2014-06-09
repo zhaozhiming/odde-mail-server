@@ -1,7 +1,9 @@
 package com.odde.mail.controller;
 
+
+import com.odde.mail.model.Recipient;
 import com.odde.mail.model.Result;
-import com.odde.mail.service.MailService;
+import com.odde.mail.service.RecipientService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -15,28 +17,28 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import static java.lang.String.format;
 
 @Controller
-@RequestMapping("/mail")
-public class MailController {
-    private static final Log log = LogFactory.getLog(MailController.class);
+@RequestMapping("/recipient")
+public class RecipientController {
+    private static final Log log = LogFactory.getLog(RecipientController.class);
     private final ObjectMapper mapper = new ObjectMapper();
 
     @Autowired
-    private MailService mailService;
+    private RecipientService recipientService;
 
-    @RequestMapping(value = "/send", method = RequestMethod.POST)
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
     public
     @ResponseBody
-    String send(@RequestParam("recipients") String recipients,
-                @RequestParam("subject") String subject,
-                @RequestParam("content") String content) throws Exception {
-        log.debug("mail controller send start");
-        log.debug(format("recipients:%s", recipients));
-        log.debug(format("subject:%s", subject));
-        log.debug(format("content:%s", content));
-        Result mailResult = mailService.send(recipients, subject, content);
+    String add(@RequestParam("username") String username,
+                @RequestParam("email") String email) throws Exception {
+        log.debug("recipient controller add start");
+        log.debug(format("username:%s", username));
+        log.debug(format("email:%s", email));
+        Result mailResult = recipientService.add(username, email);
         String result = mapper.writeValueAsString(mailResult);
         log.debug(format("result:%s", result));
-        log.debug("mail controller send finish");
+        log.debug("recipient controller add finish");
         return result;
     }
+
+
 }

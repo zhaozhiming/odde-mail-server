@@ -12,7 +12,7 @@ public class Recipient {
     private Long id;
 
     @Basic
-    private String name;
+    private String username;
 
     @Basic
     private String email;
@@ -20,8 +20,8 @@ public class Recipient {
     public Recipient() {
     }
 
-    public Recipient(String name, String email) {
-        this.name = name;
+    public Recipient(String username, String email) {
+        this.username = username;
         this.email = email;
     }
 
@@ -33,12 +33,12 @@ public class Recipient {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String name) {
+        this.username = name;
     }
 
     public String getEmail() {
@@ -51,6 +51,6 @@ public class Recipient {
 
     @Override
     public String toString() {
-        return format("Recipient{name='%s', email='%s'}", name, email);
+        return format("Recipient{name='%s', email='%s'}", username, email);
     }
 }

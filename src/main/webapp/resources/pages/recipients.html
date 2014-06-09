@@ -1,10 +1,21 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+<div id="addRecipientsForm" class="ui form segment">
+    <div class="two fields">
+        <div class="field">
+            <input id="username" name="username" placeholder="姓名" type="text">
+        </div>
+        <div class="field">
+            <input id="email" name="email" placeholder="Email" type="text">
+        </div>
+    </div>
+    <div class="ui blue submit button" ng-click="add()">创建</div>
+    <div class="ui error message"></div>
+</div>
 
-</body>
-</html>
+<div id="addResult" class="ui modal">
+    <i class="close icon"></i>
+    <div class="header">
+        添加用户{{result.status}}
+    </div>
+</div>
+
+<div class="ui divider"></div>

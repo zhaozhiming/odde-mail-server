@@ -1,12 +1,12 @@
 package com.odde.mail.model;
 
-public class MailResult {
+public class Result {
     private String status;
 
-    public MailResult() {
+    public Result() {
     }
 
-    public MailResult(String status) {
+    public Result(String status) {
         this.status = status;
     }
 

@@ -21,8 +21,8 @@ function SendController($scope, $http, $route) {
                     prompt: '请输入主题'
                 },
                 {
-                    type   : 'maxLength[100]',
-                    prompt : '主题长度不能超过100个字符'
+                    type: 'maxLength[100]',
+                    prompt: '主题长度不能超过100个字符'
                 }
             ]
         }
@@ -39,7 +39,7 @@ function SendController($scope, $http, $route) {
             $scope.send = function () {
                 $http.post('api/mail/send', sendData, config).success(function (data) {
                     $("#sendResult").modal('setting', {
-                        onHidden : function() {
+                        onHidden: function () {
                             $route.reload();
                         }
                     }).modal('show');
