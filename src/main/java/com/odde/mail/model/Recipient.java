@@ -1,6 +1,11 @@
 package com.odde.mail.model;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 import javax.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static java.lang.String.format;
 
@@ -16,6 +21,10 @@ public class Recipient {
 
     @Basic
     private String email;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipient")
+    @JsonIgnore
+    private List<RecipientAttribute> recipientAttributes;
 
     public Recipient() {
     }
@@ -47,6 +56,14 @@ public class Recipient {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<RecipientAttribute> getRecipientAttributes() {
+        return recipientAttributes;
+    }
+
+    public void setRecipientAttributes(List<RecipientAttribute> recipientAttributes) {
+        this.recipientAttributes = recipientAttributes;
     }
 
     @Override

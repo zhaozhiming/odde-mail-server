@@ -26,6 +26,7 @@
         <th>序号</th>
         <th>姓名</th>
         <th>Email</th>
+        <th>添加属性</th>
     </tr>
     </thead>
     <tbody>
@@ -33,6 +34,7 @@
         <td>{{$index + 1}}</td>
         <td>{{recipient.username}}</td>
         <td>{{recipient.email}}</td>
+        <td><i class="green add link icon" ng-click="addAttribute(recipient.id)"></i></td>
     </tr>
     </tbody>
     <tfoot>

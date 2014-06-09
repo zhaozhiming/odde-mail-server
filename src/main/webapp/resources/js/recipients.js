@@ -30,13 +30,13 @@ function RecipientsController($scope, $http, $route) {
 
     var setting = {
         onSuccess: function () {
-            var sendData = {
+            var addData = {
                 "username": $("#username").val() || "",
                 "email": $("#email").val() || ""
             };
 
             $scope.add = function () {
-                $http.post('api/recipient/add', sendData, config).success(function (data) {
+                $http.post('api/recipient/add', addData, config).success(function (data) {
                     $("#addResult").modal('setting', {
                         onHidden: function () {
                             $route.reload();

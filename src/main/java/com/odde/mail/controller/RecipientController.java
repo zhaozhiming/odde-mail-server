@@ -31,7 +31,7 @@ public class RecipientController {
     public
     @ResponseBody
     String add(@RequestParam("username") String username,
-                @RequestParam("email") String email) throws Exception {
+               @RequestParam("email") String email) throws Exception {
         log.debug("recipient controller add start");
         log.debug(format("username:%s", username));
         log.debug(format("email:%s", email));
