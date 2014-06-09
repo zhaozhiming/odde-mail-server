@@ -1,4 +1,42 @@
 package com.odde.mail.controller;
 
+import com.odde.mail.model.MailResult;
+import com.odde.mail.service.MailService;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import static java.lang.String.format;
+
+@Controller
+@RequestMapping("/mail")
 public class MailController {
+    private static final Log log = LogFactory.getLog(MailController.class);
+    private final ObjectMapper mapper = new ObjectMapper();
+
+    @Autowired
+    private MailService mailService;
+
+    @RequestMapping(value = "/send", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    String send(@RequestParam("recipients") String recipients,
+                @RequestParam("subject") String subject,
+                @RequestParam("content") String content) throws Exception {
+        log.debug("mail controller send start");
+        log.debug(format("recipients:%s", recipients));
+        log.debug(format("subject:%s", subject));
+        log.debug(format("content:%s", content));
+        MailResult mailResult = mailService.send(recipients, subject, content);
+        String result = mapper.writeValueAsString(mailResult);
+        log.debug(format("result:%s", result));
+        log.debug("mail controller send finish");
+        return result;
+    }
 }
