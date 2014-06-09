@@ -1,6 +1,6 @@
 ## TODO LIST
 
-- [ ] add index page
+- [x] add index page
 - [ ] add mail send page
 - [ ] create db
 - [ ] create mail account
