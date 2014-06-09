@@ -49,4 +49,8 @@ function RecipientsController($scope, $http, $route) {
     };
 
     $('#addRecipientsForm').form(rules, setting);
+
+    $http.get('api/recipient/list').success(function (data) {
+        $scope.recipients = data;
+    });
 }

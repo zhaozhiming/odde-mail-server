@@ -19,3 +19,25 @@
 </div>
 
 <div class="ui divider"></div>
+
+<table ng-hide="recipients.length == 0" class="ui table segment">
+    <thead>
+    <tr>
+        <th>序号</th>
+        <th>姓名</th>
+        <th>Email</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="recipient in recipients">
+        <td>{{$index + 1}}</td>
+        <td>{{recipient.username}}</td>
+        <td>{{recipient.email}}</td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+        <th>结果数: {{recipients.length || 0}}</th>
+    </tr>
+    </tfoot>
+</table>

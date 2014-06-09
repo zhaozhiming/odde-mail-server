@@ -1,7 +1,7 @@
 ## TODO LIST
 
 - [ ] add CI
-- [ ] list recipient function 
+- [x] add list recipient function 
 - [x] add create recipient function 
 - [x] add mail service
 - [x] create mail account

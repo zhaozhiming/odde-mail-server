@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 import static java.lang.String.format;
 
 @Controller
@@ -40,5 +42,16 @@ public class RecipientController {
         return result;
     }
 
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    String list() throws Exception {
+        log.debug("recipient controller list start");
+        List<Recipient> recipients = recipientService.list();
+        String result = mapper.writeValueAsString(recipients);
+        log.debug(format("recipients:%s", result));
+        log.debug("recipient controller list finish");
+        return result;
+    }
 
 }
