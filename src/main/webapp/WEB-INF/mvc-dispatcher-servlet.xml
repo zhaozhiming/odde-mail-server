@@ -47,17 +47,17 @@
         </property>
     </bean>
 
-    <bean id="writeJpaVendor"
+    <bean id="jpaVendor"
           class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
         <property name="showSql" value="true"/>
         <property name="generateDdl" value="true"/>
     </bean>
 
-    <bean id="writeDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource " destroy-method="close">
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource " destroy-method="close">
         <property name="driverClass" value="com.mysql.jdbc.Driver"/>
-        <property name="jdbcUrl" value="jdbc:mysql://w.rdc.sae.sina.com.cn:3307/app_depblog"/>
-        <property name="user" value="xnk44lnlz3"/>
-        <property name="password" value="lj15hwjlzyxxklh5mz5wy0hmw1535yhmiylyy34y"/>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/oms"/>
+        <property name="user" value="root"/>
+        <property name="password" value="root"/>
         <property name="acquireIncrement" value="1"/>
         <property name="initialPoolSize" value="5"/>
         <property name="maxPoolSize" value="20"/>
@@ -66,10 +66,10 @@
         <property name="testConnectionOnCheckout" value="true"/>
     </bean>
 
-    <bean id="writeEntityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="persistenceUnitManager" ref="persistenceUnitManager" />
         <property name="persistenceUnitName" value="mainPersistenceUnit"/>
-        <property name="jpaVendorAdapter" ref="writeJpaVendor" />
+        <property name="jpaVendorAdapter" ref="jpaVendor" />
         <property name="loadTimeWeaver">
             <bean class="org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver" />
         </property>
@@ -78,17 +78,17 @@
         </property>
     </bean>
 
-    <bean id="writeTransactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-        <property name="entityManagerFactory" ref="writeEntityManagerFactory"/>
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
         <qualifier value="writeEm" />
         <property name="jpaDialect">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaDialect" />
         </property>
     </bean>
 
-    <jpa:repositories base-package="com.github.dba.repo.write"
-                      entity-manager-factory-ref="writeEntityManagerFactory"
-                      transaction-manager-ref="writeTransactionManager" />
+    <jpa:repositories base-package="com.odde.mail.repo"
+                      entity-manager-factory-ref="entityManagerFactory"
+                      transaction-manager-ref="transactionManager" />
 
-    <tx:annotation-driven transaction-manager="writeTransactionManager"/>
+    <tx:annotation-driven transaction-manager="transactionManager"/>
 </beans>
