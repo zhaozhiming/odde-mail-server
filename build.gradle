@@ -40,7 +40,6 @@ dependencies {
     )
 
     //mail
-    compile("org.apache.velocity:velocity:1.7")
     compile("javax.mail:mail:1.4.7")
 
     //spring

@@ -1,6 +1,7 @@
 ## TODO LIST
 
 - [ ] add recipient attribute 
+- [x] remove velocity 
 - [x] when add recipient exist, return failed
 - [x] add test case
 - [x] add CI
