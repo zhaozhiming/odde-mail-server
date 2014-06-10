@@ -50,7 +50,6 @@ public class MailService {
             }
         });
 
-        Result result;
         try {
             MimeMessage msg = new MimeMessage(session);
             msg.setFrom(new InternetAddress(sendMail));
@@ -58,13 +57,12 @@ public class MailService {
             msg.setSubject(subject);
             msg.setText(content);
             Transport.send(msg);
-            result = new Result("成功");
+            return new Result("成功");
         } catch (MessagingException mex) {
             log.debug(format("error:%s", mex));
-            result = new Result("失败");
+            return new Result("失败");
+        } finally {
+            log.debug("mail service send finish");
         }
-
-        log.debug("mail service send finish");
-        return result;
     }
 }
