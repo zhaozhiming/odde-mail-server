@@ -17,7 +17,6 @@ public class RecipientService {
     @Autowired
     private RecipientRepository recipientRepository;
 
-
     public Result add(String username, String email) {
         log.debug("recipient service add start");
         recipientRepository.save(new Recipient(username, email));
