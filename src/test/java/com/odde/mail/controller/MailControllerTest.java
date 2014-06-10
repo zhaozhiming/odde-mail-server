@@ -38,7 +38,7 @@ public class MailControllerTest {
         mockMvc.perform(post("/mail/send")
                         .param("recipients", "test@test.com")
                         .param("subject", "test")
-                        .param("content", "test").accept(MediaType.APPLICATION_JSON))
+                        .param("content", "test"))
                 .andDo(print())
                 .andExpect(status().isOk()).andExpect(content().string(is("{\"status\":\"成功\"}")));
     }

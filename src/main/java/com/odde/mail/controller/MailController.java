@@ -23,7 +23,7 @@ public class MailController {
     @Autowired
     private MailService mailService;
 
-    @RequestMapping(value = "/send", method = RequestMethod.POST)
+    @RequestMapping(value = "/send", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
     public
     @ResponseBody
     String send(@RequestParam("recipients") String recipients,
