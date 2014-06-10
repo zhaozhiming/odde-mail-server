@@ -1,7 +1,9 @@
 ## TODO LIST
 
-- [ ] add CI
 - [ ] add recipient attribute 
+- [ ] when add recipient exist, return failed
+- [x] add test case
+- [x] add CI
 - [x] add list recipient function 
 - [x] add create recipient function 
 - [x] add mail service
