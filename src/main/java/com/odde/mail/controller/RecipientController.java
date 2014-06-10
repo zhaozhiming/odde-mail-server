@@ -27,7 +27,7 @@ public class RecipientController {
     @Autowired
     private RecipientService recipientService;
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/add", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
     public
     @ResponseBody
     String add(@RequestParam("username") String username,
@@ -42,7 +42,7 @@ public class RecipientController {
         return result;
     }
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/list", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
     public
     @ResponseBody
     String list() throws Exception {
