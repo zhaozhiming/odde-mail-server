@@ -19,9 +19,17 @@ public class RecipientService {
 
     public Result add(String username, String email) {
         log.debug("recipient service add start");
-        recipientRepository.save(new Recipient(username, email));
+        Recipient recipient = recipientRepository.findByEmail(email);
+        Result result;
+        if (recipient == null) {
+            recipientRepository.save(new Recipient(username, email));
+            result = new Result("成功");
+        } else {
+            result = new Result("失败");
+        }
+
         log.debug("recipient service add finish");
-        return new Result("成功");
+        return result;
     }
 
     public List<Recipient> list() {

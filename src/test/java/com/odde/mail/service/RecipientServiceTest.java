@@ -17,6 +17,7 @@ import static java.util.Arrays.asList;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -36,11 +37,21 @@ public class RecipientServiceTest {
     }
 
     @Test
-    public void should_return_success_when_add_recipient_success() throws Exception {
+    public void should_return_success_when_add_recipient_not_exist() throws Exception {
+        when(recipientRepository.findByEmail(anyString())).thenReturn(null);
         when(recipientRepository.save(any(Recipient.class))).thenReturn(null);
 
         assertThat(recipientService.add("Tom", "test@test.com").getStatus(), is("成功"));
+        verify(recipientRepository).findByEmail(anyString());
         verify(recipientRepository).save(any(Recipient.class));
+    }
+
+    @Test
+    public void should_return_failed_when_add_recipient_exist() throws Exception {
+        when(recipientRepository.findByEmail(anyString())).thenReturn(new Recipient("Tom", "test@test.com"));
+
+        assertThat(recipientService.add("Tom", "test@test.com").getStatus(), is("失败"));
+        verify(recipientRepository).findByEmail(anyString());
     }
     
     @Test
