@@ -92,3 +92,15 @@ dependencies {
 war {
     baseName = 'oddemail'
 }
+
+task autoStartJetty(type: JettyRun) {
+    httpPort = 4567
+    stopPort = 7654
+    stopKey = 'oddemail'
+}
+
+task autoStopJetty(type: JettyStop) {
+    stopPort = 7654
+    stopKey = 'oddemail'
+}
+
