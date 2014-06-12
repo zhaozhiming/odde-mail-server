@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.mail.*;
+import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
@@ -53,7 +54,7 @@ public class MailService {
         try {
             MimeMessage msg = new MimeMessage(session);
             msg.setFrom(new InternetAddress(sendMail));
-            msg.setRecipients(Message.RecipientType.TO, recipients);
+            msg.setRecipients(Message.RecipientType.TO, transformStringsToAddresses(recipients));
             msg.setSubject(subject);
             msg.setText(content);
             Transport.send(msg);
@@ -64,5 +65,14 @@ public class MailService {
         } finally {
             log.debug("mail service send finish");
         }
+    }
+
+    private Address[] transformStringsToAddresses(String recipients) throws AddressException {
+        String[] multipleRecipients = recipients.split(",");
+        Address[] addresses = new Address[multipleRecipients.length];
+        for (int i = 0; i < multipleRecipients.length; i++) {
+            addresses[i] = new InternetAddress(multipleRecipients[i]);
+        }
+        return addresses;
     }
 }

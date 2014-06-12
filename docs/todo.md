@@ -1,6 +1,8 @@
 ## TODO LIST
 
 - [ ] add recipient attribute 
+- [ ] add js test case  
+- [x] add multiple emails send function  
 - [x] remove velocity 
 - [x] when add recipient exist, return failed
 - [x] add test case

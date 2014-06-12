@@ -24,6 +24,12 @@ public class MailServiceTest {
     }
 
     @Test
+    public void should_return_success_when_send_multiple_mails_success() throws Exception {
+        Result result = mailService.send("test@163.com,test@sina.com", "test", "test");
+        assertThat(result.getStatus(), is("成功"));
+    }
+
+    @Test
     public void should_return_failed_when_send_mail_failed() throws Exception {
         Result result = mailService.send("wrong", "test", "test");
         assertThat(result.getStatus(), is("失败"));

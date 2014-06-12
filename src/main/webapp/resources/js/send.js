@@ -1,4 +1,19 @@
+function isValidEmailAddress(emailAddress) {
+    var reg = new RegExp("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?");
+    return emailAddress.match(reg) != null;
+}
+
 function SendController($scope, $http, $route) {
+    $.fn.form.settings.rules.emails = function (value) {
+        var emails = value.split(",");
+        for(var i = 0; i < emails.length; i++) {
+            if(isValidEmailAddress(value)) {
+                return false;
+            }
+        }
+        return true;
+    };
+
     var rules = {
         recipientsKeyword: {
             identifier: 'recipients',
@@ -8,8 +23,8 @@ function SendController($scope, $http, $route) {
                     prompt: '请输入收件人'
                 },
                 {
-                    type: 'email',
-                    prompt: '请输入一个有效的email地址'
+                    type: 'emails',
+                    prompt: '请输入有效的email地址'
                 }
             ]
         },
