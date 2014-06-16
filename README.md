@@ -12,7 +12,7 @@ global install of Karma, this project uses a local install.
 Run `npm install` to install all the local JS dependencies and then
 run:
 
-  node_module/karma/bin/karma start src/test/js/config/karma.unit.js
+  node_modules/karma/bin/karma start src/test/js/config/karma.unit.js
 
 This will start the live Karma test runner.
 
