@@ -16,7 +16,7 @@ import static org.hamcrest.core.StringContains.containsString;
 import static org.junit.Assert.assertThat;
 
 @RunWith(JMockit.class)
-public class RecipientControllerJMockitTest {
+public class RecipientControllerTest {
 
     @Tested
     private RecipientController recipientController;

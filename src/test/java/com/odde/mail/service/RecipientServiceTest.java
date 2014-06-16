@@ -17,7 +17,7 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(JMockit.class)
-public class RecipientServiceJMockitTest {
+public class RecipientServiceTest {
 
     @Tested
     private RecipientService recipientService;

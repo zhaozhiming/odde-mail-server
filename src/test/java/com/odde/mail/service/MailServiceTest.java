@@ -18,7 +18,7 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(JMockit.class)
-public class MailServiceJMockitTest {
+public class MailServiceTest {
 
     @Tested
     private MailService mailService;
