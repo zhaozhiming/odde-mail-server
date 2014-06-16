@@ -7,7 +7,7 @@ function SendController($scope, $http, $route) {
     $.fn.form.settings.rules.emails = function (value) {
         var emails = value.split(",");
         for(var i = 0; i < emails.length; i++) {
-            if(isValidEmailAddress(value)) {
+            if(!isValidEmailAddress(emails[i])) {
                 return false;
             }
         }
