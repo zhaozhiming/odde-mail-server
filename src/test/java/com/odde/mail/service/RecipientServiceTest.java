@@ -3,6 +3,7 @@ package com.odde.mail.service;
 import com.odde.mail.model.Recipient;
 import com.odde.mail.model.Result;
 import com.odde.mail.repo.RecipientRepository;
+import mockit.Expectations;
 import mockit.Injectable;
 import mockit.NonStrictExpectations;
 import mockit.Tested;
@@ -33,7 +34,7 @@ public class RecipientServiceTest {
 
     @Test
     public void should_return_failed_when_add_recipient_exist() throws Exception {
-        new NonStrictExpectations() {{
+        new Expectations() {{
             recipientRepository.findByEmail("test@test.com");
             result = new Recipient("Tom", "test@test.com");
         }};

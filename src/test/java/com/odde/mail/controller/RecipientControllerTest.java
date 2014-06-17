@@ -34,16 +34,6 @@ public class RecipientControllerTest {
         verifyAddRecipientByResult("失败");
     }
 
-    private void verifyAddRecipientByResult(final String serviceResult) throws Exception {
-        new NonStrictExpectations() {{
-            recipientService.add("Tom", "test@test.com");
-            result = new Result(serviceResult);
-        }};
-
-        String result = recipientController.add("Tom", "test@test.com");
-        assertThat(result, is("{\"status\":\"" + serviceResult + "\"}"));
-    }
-
     @Test
     public void should_return_recipients_when_list_success() throws Exception {
         final Recipient tom = new Recipient("Tom", "test@test.com");
@@ -54,6 +44,16 @@ public class RecipientControllerTest {
 
         String result = recipientController.list();
         assertThat(result, containsString("\"username\":\"Tom\",\"email\":\"test@test.com\""));
+    }
+
+    private void verifyAddRecipientByResult(final String serviceResult) throws Exception {
+        new NonStrictExpectations() {{
+            recipientService.add("Tom", "test@test.com");
+            result = new Result(serviceResult);
+        }};
+
+        String result = recipientController.add("Tom", "test@test.com");
+        assertThat(result, is("{\"status\":\"" + serviceResult + "\"}"));
     }
 
 }
