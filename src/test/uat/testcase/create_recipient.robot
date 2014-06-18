@@ -7,20 +7,21 @@ Test Teardown   Close Browser
 
 *** TestCases ***
 create new recipient
-    Given make sure recipient is new
+    Given execute sql  delete from recipients where email='zhaozhiming003@gmail.com'
     When create recipient
     Then verify create recipient  添加用户成功
 
 create exist recipient
-    Given make sure recipient is new
-    Given create new recipient by sql
+    Given execute sql  delete from recipients where email='zhaozhiming003@gmail.com'
+    Given execute sql  insert into recipients(username,email) values('zhaozhiming','zhaozhiming003@gmail.com')
     When create recipient
     Then verify create recipient  添加用户失败
 
 *** Keywords ***
-create new recipient by sql
+execute sql
+    [Arguments]  ${sql}
     Connect To Database Using Custom Params      cymysql    db='${dbname}',user='${dbuser}',passwd='${dbpassword}', host='${dbhost}',port=${dbport}
-    Execute Sql String    insert into recipients(username,email) values('zhaozhiming','zhaozhiming003@gmail.com')
+    Execute Sql String    ${sql}
     Disconnect from database
 
 create recipient
@@ -32,8 +33,3 @@ verify create recipient
     [Arguments]  ${expectContent}
     sleep   2s
     page should contain  ${expectContent}
-
-make sure recipient is new
-    Connect To Database Using Custom Params      cymysql    db='${dbname}',user='${dbuser}',passwd='${dbpassword}', host='${dbhost}',port=${dbport}
-    Execute Sql String    delete from recipients where email='zhaozhiming003@gmail.com'
-    Disconnect from database
