@@ -3,7 +3,7 @@ basePath = '../../../../';
 files = [
     JASMINE,
     JASMINE_ADAPTER,
-    './src/main/webapp/resources/js/**/*.js',
+    './src/main/webapp/resources/js/recipients.js',
     './src/test/js/lib/**/*.js',
     './src/test/js/unit/**/*.js'
 ];
