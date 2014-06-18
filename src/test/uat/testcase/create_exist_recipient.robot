@@ -1,7 +1,8 @@
 *** Settings ***
 Library    Selenium2Library
 Library    DatabaseLibrary
-Test Setup      Open Browser  http://localhost:9898/oddemail/#/recipients
+Resource   resource.robot
+Test Setup      Open Browser  ${baseurl}/#/recipients
 Test Teardown   Close Browser
 
 *** TestCases ***
@@ -25,7 +26,3 @@ create recipient
 create recipient fail
     sleep   2s
     page should contain  添加用户失败
-
-
-
-
