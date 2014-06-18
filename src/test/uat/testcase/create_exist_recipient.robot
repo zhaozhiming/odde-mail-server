@@ -5,7 +5,7 @@ Test Setup      Open Browser  http://localhost:9898/oddemail/#/recipients
 Test Teardown   Close Browser
 
 *** TestCases ***
-create recipient
+create exist recipient
     Given username and address is existed
     When create recipient
     Then create recipient fail
@@ -20,8 +20,8 @@ username and address is existed
 create recipient
     Input text    username    zhaozhiming
     Input text    email    zhaozhiming003@gmail.com
-    click element  submit
- 
+    click element  css=.submit
+
 create recipient fail
     sleep   2s
     page should contain  添加用户失败
