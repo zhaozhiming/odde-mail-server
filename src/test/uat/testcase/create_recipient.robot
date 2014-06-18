@@ -6,19 +6,19 @@ Test Setup      Open Browser  ${baseurl}/#/recipients
 Test Teardown   Close Browser
 
 *** TestCases ***
-create exist recipient
-    Given username and address is existed
-    When create recipient
-    Then verify create recipient  添加用户失败
-
 create new recipient
     Given make sure username and address is new
     When create recipient
     Then verify create recipient  添加用户成功
 
+create exist recipient
+    Given username and address is existed
+    When create recipient
+    Then verify create recipient  添加用户失败
+
 *** Keywords ***
 username and address is existed
-    Connect To Database Using Custom Params      cymysql    db='oms',user='root',passwd='root', host='localhost',port=3306
+    Connect To Database Using Custom Params      cymysql    db='${dbname}',user='${dbuser}',passwd='${dbpassword}', host='${dbhost}',port=${dbport}
     Execute Sql String    delete from recipients where email='zhaozhiming003@gmail.com'
     Execute Sql String    insert into recipients(username,email) values('zhaozhiming','zhaozhiming003@gmail.com')
     Disconnect from database
@@ -34,6 +34,6 @@ verify create recipient
     page should contain  ${expectContent}
 
 make sure username and address is new
-    Connect To Database Using Custom Params      cymysql    db='oms',user='root',passwd='root', host='localhost',port=3306
+    Connect To Database Using Custom Params      cymysql    db='${dbname}',user='${dbuser}',passwd='${dbpassword}', host='${dbhost}',port=${dbport}
     Execute Sql String    delete from recipients where email='zhaozhiming003@gmail.com'
     Disconnect from database
