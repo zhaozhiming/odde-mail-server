@@ -2,7 +2,7 @@
 Library    Selenium2Library
 Library    DatabaseLibrary
 Resource   resource.robot
-Test Setup      Open Browser  ${baseurl}/#/recipients
+Test Setup      Open Browser  ${baseurl}/#/recipients  ${browser}
 Test Teardown   Close Browser
 
 *** TestCases ***

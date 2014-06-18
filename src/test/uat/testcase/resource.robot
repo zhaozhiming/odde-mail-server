@@ -5,3 +5,4 @@ ${dbport}  3306
 ${dbname}  oms
 ${dbuser}  root
 ${dbpassword}  root
+${browser}  chrome
