@@ -7,7 +7,7 @@ describe('Controllers', function () {
             http = $httpBackend;
 
             scope = $rootScope.$new();
-            controller = $controller;
+            controller = $controller('RecipientsController', {$scope: scope});
         }));
 
         it('should load the Recipients from the API', function () {
@@ -17,7 +17,6 @@ describe('Controllers', function () {
                     email: "Tom@test.com"
                 }
             ]);
-            var ctrl = controller('RecipientsController', {$scope: scope});
 
             http.flush();
             expect(scope.recipients.length).toEqual(1);
